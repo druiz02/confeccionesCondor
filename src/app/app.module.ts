@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 
@@ -10,12 +10,12 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
 
 // components
-import { ProductsComponent } from './components/products/products.component';
-import { ProductComponent } from './components/products/product/product.component';
-import { ProductListComponent } from './components/products/product-list/product-list.component';
+import { EmpleadosComponent } from './components/products/empleados.component';
+import { EmpleadoComponent } from './components/products/empleado/empleado.component';
+import { EmpleadoListComponent } from './components/products/empleado-list/empleado-list.component';
 
 // service
-import { ProductService } from './services/product.service';
+import { EmpleadoService } from './services/empleado.service';
 
 // Toastr
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,9 +24,9 @@ import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
-    ProductsComponent,
-    ProductComponent,
-    ProductListComponent
+    EmpleadosComponent,
+    EmpleadoComponent,
+    EmpleadoListComponent
   ],
   imports: [
     BrowserModule,
@@ -34,10 +34,11 @@ import { ToastrModule } from 'ngx-toastr';
     AngularFireDatabaseModule,
     FormsModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [
-    ProductService
+    EmpleadoService
   ],
   bootstrap: [AppComponent]
 })

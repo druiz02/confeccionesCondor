@@ -6,11 +6,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyCEg94DGJu4Xf_fGua4fb52ysYK0z7BhA8",
-    authDomain: "angular5-crud-b366c.firebaseapp.com",
-    databaseURL: "https://angular5-crud-b366c.firebaseio.com",
-    projectId: "angular5-crud-b366c",
-    storageBucket: "angular5-crud-b366c.appspot.com",
-    messagingSenderId: "1032386966231"
+    apiKey: "AIzaSyB4Zd091fo54fscmlNDnf5O7G4jNhxLL7w",
+    authDomain: "confecciones-condor-bd.firebaseapp.com",
+    databaseURL: "https://confecciones-condor-bd.firebaseio.com",
+    projectId: "confecciones-condor-bd",
+    storageBucket: "confecciones-condor-bd.appspot.com",
+    messagingSenderId: "575663687808",
+    appId: "1:575663687808:web:324eb9d4c413e9bfa1fe65"
   }
 };
