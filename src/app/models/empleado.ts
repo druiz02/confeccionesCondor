@@ -6,4 +6,8 @@ export class Empleado {
     apellidos: string;
     fechaDeNacimiento: string;
     area:string;
+
+    constructor(){
+        this.tipoDocumento = "";
+    }
 }

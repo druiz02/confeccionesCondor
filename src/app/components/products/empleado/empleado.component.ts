@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 
 //  Service 
@@ -17,19 +17,13 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class EmpleadoComponent implements OnInit {
   myForm: FormGroup;
-  listaTipoDocumentos:string[]=["Cédula de ciudadania","Pasaporte","Cédula de extranjería", "otro"];
   constructor(
     private empleadoService: EmpleadoService,
     private toastr: ToastrService,
-    public fb: FormBuilder
+    public fb: FormBuilder,
   ) {
     this.myForm = this.fb.group({
-      nombres: ['', [Validators.required]],
-      apellidos: ['', [Validators.required]],
-      tipoDocumento: ['', [Validators.required]],
-      fechaDeNacimiento: ['', [Validators.required]],
-      area: ['', [Validators.required]],
-     
+      nombres: ["", Validators.required]
     });
    }
 

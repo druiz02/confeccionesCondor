@@ -1,42 +1,63 @@
 <div class="card mt-5">
     <div class="card-body">
-        <form #empleadoForm="ngForm" (ngSubmit)="onSubmit(empleadoForm)">
+        <!-- <form #empleadoForm="ngForm" (ngSubmit)="onSubmit(empleadoForm)"> -->
+        <form name="form" #empleadoForm="ngForm" (ngSubmit)="empleadoForm.form.valid && onSubmit(empleadoForm)" novalidate>
             <!-- TO UPDATE -->
-            <input required type="hidden" name="$key" #$key="ngModel" [(ngModel)]="empleadoService.selectedEmpleado.$key">
+            <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="empleadoService.selectedEmpleado.$key">
 
             <div class="form-group">
-                <input required type="text" class="form-control" name="nombres" #name="ngModel" [(ngModel)]="empleadoService.selectedEmpleado.nombres" placeholder="Ingrese su nombre completo">
+                <input [ngClass]="{ 'is-invalid': empleadoForm.submitted && nombres.invalid }" #nombres="ngModel" required type="text" class="form-control" name="nombres" #name="ngModel" [(ngModel)]="empleadoService.selectedEmpleado.nombres" placeholder="Ingrese su nombre completo">
+                <div *ngIf="empleadoForm.submitted && nombres.invalid" class="invalid-feedback">
+                    <div *ngIf="nombres.errors.required">El nombre es requerido</div>
+                </div>
             </div>
             <div class="form-group">
-                <input required type="text" class="form-control" name="apellidos" #category="ngModel" [(ngModel)]="empleadoService.selectedEmpleado.apellidos" placeholder="Ingrese sus apellidos">
+                <input [ngClass]="{ 'is-invalid': empleadoForm.submitted && apellidos.invalid }" #apellidos="ngModel" required type="text" class="form-control" name="apellidos" #category="ngModel" [(ngModel)]="empleadoService.selectedEmpleado.apellidos" placeholder="Ingrese sus apellidos">
+                <div *ngIf="empleadoForm.submitted && apellidos.invalid" class="invalid-feedback">
+                    <div *ngIf="apellidos.errors.required">El apellido es requerido</div>
+                </div>
             </div>
             <div class="form-group">
-                <input required type="text" class="form-control" name="area" #location="ngModel" [(ngModel)]="empleadoService.selectedEmpleado.area" placeholder="Ingrese area a la que pertenece">
+                <input [ngClass]="{ 'is-invalid': empleadoForm.submitted && area.invalid }" #area="ngModel" required type="text" class="form-control" name="area" #location="ngModel" [(ngModel)]="empleadoService.selectedEmpleado.area" placeholder="Ingrese area a la que pertenece">
+                <div *ngIf="empleadoForm.submitted && area.invalid" class="invalid-feedback">
+                    <div *ngIf="area.errors.required">El area es requerido</div>
+                </div>
             </div>
             <div class="form-group">
                 <!-- <input type="text" class="form-control" name="tipoDocumento" #location="ngModel" [(ngModel)]="empleadoService.selectedEmpleado.tipoDocumento" placeholder="Ingrese area a la que pertenece"> -->
-                <select required class="form-control" name="tipoDocumento" [(ngModel)]="empleadoService.selectedEmpleado.tipoDocumento">
-                       
+                <select [ngClass]="{ 'is-invalid': empleadoForm.submitted && tipoDocumento.invalid }" #tipoDocumento="ngModel" required class="form-control" name="tipoDocumento" [(ngModel)]="empleadoService.selectedEmpleado.tipoDocumento">
+                    <option class="form-control" hidden value="" disabled selected>Seleccione el tipo de documento </option>
                        <option  value="cc">Cédula de ciudadania</option> 
                         <option value="p">Pasaporte</option>
                         <option value="ce">Cédula de extranjería</option>
                         <option value="o">Otro</option>
                     </select>
+                <div *ngIf="empleadoForm.submitted && tipoDocumento.invalid" class="invalid-feedback">
+                    <div *ngIf="tipoDocumento.errors.required">El tipo de documento es requerido</div>
+                </div>
             </div>
             <div class="form-group">
-                <input required type="date" class="form-control" name="fechaDeNacimiento" #location="ngModel" [(ngModel)]="empleadoService.selectedEmpleado.fechaDeNacimiento" placeholder="Ingrese su fecha de nacimiento">
+                <input [ngClass]="{ 'is-invalid': empleadoForm.submitted && fechaDeNacimiento.invalid }" #fechaDeNacimiento="ngModel" required type="text" class="form-control" name="fechaDeNacimiento" #location="ngModel" [(ngModel)]="empleadoService.selectedEmpleado.fechaDeNacimiento"
+                    placeholder="Ingrese su fecha de nacimiento" onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}">
+                <div *ngIf="empleadoForm.submitted && fechaDeNacimiento.invalid" class="invalid-feedback">
+                    <div *ngIf="fechaDeNacimiento.errors.required">La fecha de nacimiento es requerido</div>
+                </div>
             </div>
 
             <div class="form-group">
-                <input required type="number" class="form-control" name="identificacion" #location="ngModel" [(ngModel)]="empleadoService.selectedEmpleado.identificacion" placeholder="Ingrese el número de identificación">
+                <input [ngClass]="{ 'is-invalid': empleadoForm.submitted && identificacion.invalid }" #identificacion="ngModel" required type="number" class="form-control" name="identificacion" #location="ngModel" [(ngModel)]="empleadoService.selectedEmpleado.identificacion"
+                    placeholder="Ingrese el número de identificación">
+                <div *ngIf="empleadoForm.submitted && identificacion.invalid" class="invalid-feedback">
+                    <div *ngIf="identificacion.errors.required">El número de identificación es requerido</div>
+                </div>
             </div>
 
             <div class="form-group">
-                <button class="btn btn-primary" type="submit" [disabled]="myForm.invalid">
+                <button class="btn btn-primary" type="submit">
                 <i class="fas fa-plus-circle"></i> Registrar empleado
             </button>
                 <button class="btn btn-secondary" type="reset" (click)="resetForm(empleadoForm)">
-                <i class="fas fa-sync-alt"></i> Reiniciar
+                <i class="fas fa-sync-alt"></i> Limpiar
             </button>
             </div>
         </form>
